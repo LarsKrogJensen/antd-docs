@@ -1,14 +1,13 @@
 import * as React from "react"
 import {Icon, Layout, Menu} from "antd";
 import toc from "../docs/index"
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
 
 
-export class DocsPage extends React.Component {
-
+class DocsPage extends React.Component {
 
     constructor() {
         super();
@@ -19,6 +18,10 @@ export class DocsPage extends React.Component {
     }
 
     render() {
+
+     //   const item = findMenuItem(this.props.location.pathname);
+
+
         return (
             <Layout style={{background: '#fff'}}>
                 <Sider width={200}
@@ -131,3 +134,5 @@ export class DocsPage extends React.Component {
         )
     }
 }
+
+export default withRouter(DocsPage)

@@ -1,4 +1,4 @@
-const toc = [
+export default [
     {
         type: "section",
         title: "Introduction",
@@ -46,5 +46,3 @@ const toc = [
         ]
     }
 ];
-
-export default toc
