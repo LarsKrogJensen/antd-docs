@@ -2,6 +2,8 @@ import * as React from "react"
 import {Icon, Layout, Menu} from "antd";
 import toc from "../docs/index"
 import {Link, withRouter} from "react-router-dom";
+import withMarkdown from "components/markdown/MarkdownContainer";
+import Markdown from "components/markdown/Markdown";
 
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
@@ -19,8 +21,7 @@ class DocsPage extends React.Component {
 
     render() {
 
-     //   const item = findMenuItem(this.props.location.pathname);
-
+        const MarkdownView = withMarkdown(Markdown, require("docs/intro/Changelog.md"));
 
         return (
             <Layout style={{background: '#fff'}}>
@@ -35,67 +36,7 @@ class DocsPage extends React.Component {
                 </Sider>
 
                 <Content style={{marginLeft: 200, paddingTop: 24, paddingLeft: 16, paddingRight: 16, minHeight: 280}}>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
-                    Content<br/>
+                    <MarkdownView/>
                 </Content>
             </Layout>
         )

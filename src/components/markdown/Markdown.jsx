@@ -5,11 +5,9 @@ import emoji from "markdown-it-emoji"
 import deflist from "markdown-it-deflist"
 import abbr from "markdown-it-abbr"
 import footnote from "markdown-it-footnote"
-import "markdown.css"
-import withMarkdown from "src/containers/MarkdownContainer";
-// import QueryConsole from "../queryConsole/QueryConsoleContainer"
+import "./markdown.css"
 
-class Markdown extends React.Component {
+export default class Markdown extends React.Component {
 
     constructor() {
         super();
@@ -75,5 +73,3 @@ class Markdown extends React.Component {
         )
     }
 }
-
-export default withMarkdown(Markdown,)

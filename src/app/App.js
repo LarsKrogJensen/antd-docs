@@ -4,7 +4,7 @@ import {Layout} from "antd";
 import DocsPage from "pages/DocsPage";
 import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import ExplorerPage from "pages/ExplorerPage";
-import AppHeader from "AppHeader";
+import AppHeader from "./AppHeader";
 
 const {Content} = Layout;
 
