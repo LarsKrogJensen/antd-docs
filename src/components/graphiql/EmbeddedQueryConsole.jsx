@@ -1,13 +1,15 @@
-import React, {PropTypes} from "react";
+import React from "react";
+import PropTypes from "prop-types"
 import GraphiQL from "graphiql";
-import "./graphiql.css"
+import "graphiql/graphiql.css"
 import "./embedded.css"
+import fetcher from "./fetcher"
 
 export default class EmbeddedQueryConsole extends React.Component {
     render() {
         return (
             <div className="embedded bordered graphiql">
-                <GraphiQL fetcher={this.props.fetcher}
+                <GraphiQL fetcher={fetcher}
                           embedded
                           query={this.props.query}>
                 </GraphiQL>
@@ -17,8 +19,5 @@ export default class EmbeddedQueryConsole extends React.Component {
 }
 
 EmbeddedQueryConsole.propTypes = {
-    token: PropTypes.string,
-    query: PropTypes.string,
-    embedded: PropTypes.bool,
-    fetcher: PropTypes.func.isRequired
+    query: PropTypes.string
 };

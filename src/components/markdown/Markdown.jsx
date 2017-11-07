@@ -1,4 +1,5 @@
 import * as React from "react"
+import PropTypes from "prop-types"
 import markdownIt from 'markdown-it';
 import hljs from 'highlight.js'
 import emoji from "markdown-it-emoji"
@@ -8,6 +9,7 @@ import footnote from "markdown-it-footnote"
 import imsize from "markdown-it-imsize"
 import "./markdown.css"
 import autobind from "autobind-decorator"
+import EmbeddedQueryConsole from "components/graphiql/EmbeddedQueryConsole";
 
 
 export default class Markdown extends React.Component {
@@ -74,8 +76,7 @@ export default class Markdown extends React.Component {
     renderExplorer(source, key) {
         return (
             <div key={key} style={{paddingTop: 16, paddingBottom: 16}}>
-                {/*<QueryConsole embedded={true} query={source}/>*/}
-                Query Console
+                <EmbeddedQueryConsole query={source}/>
             </div>
         )
     }
@@ -98,3 +99,7 @@ export default class Markdown extends React.Component {
         )
     }
 }
+
+Markdown.propTypes = {
+    content: PropTypes.string
+};
