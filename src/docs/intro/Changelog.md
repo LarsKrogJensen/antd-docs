@@ -6,6 +6,7 @@
 ##### h5 Heading
 ###### h6 Heading
 
+![markdow](images/icon256.png)
 
 ## Horizontal Rules
 
@@ -14,6 +15,15 @@ ___
 ---
 
 ***
+
+::: warning      
+*This Warning Box.*
+:::
+
+::: info      
+*This Info Box.*
+:::
+
 
 ## Example
 
@@ -162,9 +172,8 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
 ## Images
 
-![logo](icon48.png)
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Minion](https://octodex.github.com/images/minion.png =250x)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat" =250x)
 
 Like links, Images also have a footnote style syntax
 

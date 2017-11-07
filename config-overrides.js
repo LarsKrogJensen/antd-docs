@@ -6,5 +6,6 @@ module.exports = function override(config, env) {
     config = rewireLess(config, env, {
         modifyVars: {"@primary-color": "#1DA57A"},
     });
+    config = injectBabelPlugin('transform-decorators-legacy', config);
     return config;
 };

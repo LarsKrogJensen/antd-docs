@@ -5,16 +5,12 @@ import emoji from "markdown-it-emoji"
 import deflist from "markdown-it-deflist"
 import abbr from "markdown-it-abbr"
 import footnote from "markdown-it-footnote"
+import imsize from "markdown-it-imsize"
 import "./markdown.css"
+import autobind from "autobind-decorator"
+
 
 export default class Markdown extends React.Component {
-
-    constructor() {
-        super();
-        this.split = this.split.bind(this);
-        this.renderMarkdown = this.renderMarkdown.bind(this);
-        this.renderExplorer = this.renderExplorer.bind(this);
-    }
 
     render() {
         const mdSource = this.props.content;
@@ -25,7 +21,7 @@ export default class Markdown extends React.Component {
         return (<div>{blocks}</div>)
     }
 
-
+    @autobind
     split(mdSource) {
         let blocks = mdSource.split(":::");
 
@@ -33,14 +29,19 @@ export default class Markdown extends React.Component {
             let infoParts = block.split("\n");
             if (infoParts.length > 0 && infoParts[0].indexOf("explorer") > -1) {
                 return this.renderExplorer(infoParts.slice(1).join("\n"), index);
+            } else if (infoParts.length > 0 && infoParts[0].indexOf("warning") > -1) {
+                return this.renderWarning(infoParts.slice(1).join("\n"), index);
+            } else if (infoParts.length > 0 && infoParts[0].indexOf("info") > -1) {
+                return this.renderInfo(infoParts.slice(1).join("\n"), index);
             } else {
                 return this.renderMarkdown(block, index);
             }
         });
     }
 
-    renderMarkdown(source, key) {
 
+    @autobind
+    renderMarkdown(source, key) {
         const md = markdownIt({
             highlight(str, lang) {
                 if (lang && hljs.getLanguage(lang)) {
@@ -53,8 +54,13 @@ export default class Markdown extends React.Component {
                     `${md.utils.escapeHtml(str)}`
                 );
             },
-        }).use(emoji).use(abbr).use(deflist).use(footnote);
-        
+        }).use(emoji)
+            .use(abbr)
+            .use(deflist)
+            .use(footnote)
+            .use(imsize)
+        // .use(this.handleImage);
+
         let html = md.render(source);
 
         return (
@@ -64,11 +70,30 @@ export default class Markdown extends React.Component {
             />)
     }
 
+    @autobind
     renderExplorer(source, key) {
         return (
             <div key={key} style={{paddingTop: 16, paddingBottom: 16}}>
                 {/*<QueryConsole embedded={true} query={source}/>*/}
                 Query Console
+            </div>
+        )
+    }
+
+    @autobind
+    renderWarning(source, key) {
+        return (
+            <div key={key} className="alert alert-error">
+                {this.renderMarkdown(source, key)}
+            </div>
+        )
+    }
+
+    @autobind
+    renderInfo(source, key) {
+        return (
+            <div key={key} className="alert alert-info">
+                {this.renderMarkdown(source, key)}
             </div>
         )
     }

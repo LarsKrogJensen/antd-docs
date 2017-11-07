@@ -4,20 +4,13 @@ import toc from "../docs/index"
 import {Link, withRouter} from "react-router-dom";
 import withMarkdown from "components/markdown/MarkdownContainer";
 import Markdown from "components/markdown/Markdown";
+import autobind from "autobind-decorator"
 
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
 
 
 class DocsPage extends React.Component {
-
-    constructor() {
-        super();
-        this.renderTOC = this.renderTOC.bind(this);
-        this.renderItem = this.renderItem.bind(this);
-        this.renderMenuItem = this.renderMenuItem.bind(this);
-        this.renderSubMenu = this.renderSubMenu.bind(this);
-    }
 
     render() {
 
@@ -42,10 +35,12 @@ class DocsPage extends React.Component {
         )
     }
 
+    @autobind
     renderTOC() {
         return toc.map(item => this.renderItem(item, "/docs"));
     }
 
+    @autobind
     renderItem(item, path) {
         if (item.type === "section") {
             return this.renderSubMenu(item, path)
@@ -56,6 +51,7 @@ class DocsPage extends React.Component {
         }
     }
 
+    @autobind
     renderSubMenu(section, path) {
         path = path + section.path;
         return (
@@ -65,6 +61,7 @@ class DocsPage extends React.Component {
         )
     }
 
+    @autobind
     renderMenuItem(item, path) {
         path = path + item.path;
 
