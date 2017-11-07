@@ -1,0 +1,11 @@
+.graphiql-container .topBar {
+    height: 48px;
+ }
+
+.graphiql-container .doc-explorer-title-bar {
+    height: 48px;
+ }
+
+.graphiql-container .history-title-bar {
+    height: 48px;
+ }
