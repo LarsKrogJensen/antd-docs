@@ -12,16 +12,18 @@ export default class App extends Component {
     render() {
         return (
             <Router>
-                <Layout>
+                <div style={{height: "100vh", display: "flex", flexDirection: "column"}}>
                     <AppHeader/>
-                    <Content style={{marginTop: 64}}>
-                        <Switch>
-                            <Redirect exact path="/" to="/docs"/>
-                            <Route path="/docs" component={DocsPage}/>
-                            <Route path="/explorer" component={ExplorerPage}/>
-                        </Switch>
+                    <Content style={{display: "flex", flex: 1, minHeight: 0}}>
+                        <div style={{flex: 1, overflow: "auto"}}>
+                            <Switch>
+                                <Redirect exact path="/" to="/docs"/>
+                                <Route path="/docs" component={DocsPage}/>
+                                <Route path="/explorer" component={ExplorerPage}/>
+                            </Switch>
+                        </div>
                     </Content>
-                </Layout>
+                </div>
             </Router>
         );
 
