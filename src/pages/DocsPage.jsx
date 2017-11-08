@@ -1,76 +1,77 @@
 import * as React from "react"
-import {Icon, Layout, Menu} from "antd";
-import toc from "../docs/index"
-import {Link, withRouter} from "react-router-dom";
-import withMarkdown from "components/markdown/MarkdownContainer";
-import Markdown from "components/markdown/Markdown";
+import { Layout } from "antd";
+import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import autobind from "autobind-decorator"
+import DocsMenu from "pages/DocsMenu";
+import toc from "docs"
+import Markdown from "components/markdown/Markdown";
+import withMarkdown from "components/markdown/MarkdownContainer";
 
-const {SubMenu} = Menu;
-const {Content, Sider} = Layout;
+const { Content, Sider } = Layout;
 
 
 class DocsPage extends React.Component {
 
-    render() {
+  render() {
+    return (
+      <Layout style={{ background: '#fff' }}>
+        <Sider width={200}
+               style={{ background: '#fff', overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}>
+          <DocsMenu selectedKey={this.props.location.pathname}/>
+        </Sider>
 
-        const MarkdownView = withMarkdown(Markdown, require("docs/intro/Changelog.md"));
+        <Content style={{ marginLeft: 200, paddingTop: 24, paddingLeft: 16, paddingRight: 16, minHeight: 280 }}>
+          <Switch>
+            {this.routes()}
+          </Switch>
+        </Content>
+      </Layout>
+    )
+  }
 
-        return (
-            <Layout style={{background: '#fff'}}>
-                <Sider width={200}
-                       style={{background: '#fff', overflow: 'auto', height: '100vh', position: 'fixed', left: 0}}>
-                    <Menu mode="inline"
-                          defaultSelectedKeys={['1']}
-                          defaultOpenKeys={['sub1']}
-                          style={{paddingTop: 24, height: '100%'}}>
-                        {this.renderTOC()}
-                    </Menu>
-                </Sider>
+  @autobind
+  routes() {
+    const path = "/docs"
+    const routes = []
+    routes.push(<Redirect key={path} exact path={path} to={this.findFirstChildNode(toc, path)}/>)
+    routes.push(...this.createRoutes(toc, path))
+    return routes;
+  }
 
-                <Content style={{marginLeft: 200, paddingTop: 24, paddingLeft: 16, paddingRight: 16, minHeight: 280}}>
-                    <MarkdownView/>
-                </Content>
-            </Layout>
-        )
-    }
+  @autobind
+  createRoutes(nodes, path) {
+    return nodes.map(node => {
+      if (node.type === "section") {
+        return this.createSectionRoutes(node, path)
+      } else if (node.type === "doc") {
+        return this.createDocumentRoute(node, path)
+      } else {
+        return null
+      }
+    })
+  }
+  
+  @autobind
+  createDocumentRoute(docNode, path) {
+    path = path + docNode.path
 
-    @autobind
-    renderTOC() {
-        return toc.map(item => this.renderItem(item, "/docs"));
-    }
+    return <Route key={path} path={path} component={withMarkdown(Markdown, docNode.md)}/>
+  }
 
-    @autobind
-    renderItem(item, path) {
-        if (item.type === "section") {
-            return this.renderSubMenu(item, path)
-        } else if (item.type === "doc") {
-            return this.renderMenuItem(item, path)
-        } else {
-            return null;
-        }
-    }
+  @autobind
+  createSectionRoutes(sectionNode, path) {
+    path = path + sectionNode.path
 
-    @autobind
-    renderSubMenu(section, path) {
-        path = path + section.path;
-        return (
-            <SubMenu key={path} title={<span><Icon type={section.icon}/>{section.title}</span>}>
-                {section.children.map(item => this.renderItem(item, path))}
-            </SubMenu>
-        )
-    }
+    const routes = []
+    routes.push(<Redirect key={path} exact path={path} to={this.findFirstChildNode(sectionNode.children, path)}/>)
+    routes.push(...this.createRoutes(sectionNode.children, path))
+    return routes;
+  }
 
-    @autobind
-    renderMenuItem(item, path) {
-        path = path + item.path;
-
-        return (
-            <Menu.Item key={path}>
-                <Link to={path}>{item.title}</Link>
-            </Menu.Item>
-        )
-    }
+  @autobind
+  findFirstChildNode(nodes, path) {
+    return path + nodes[0].path;
+  }
 }
 
 export default withRouter(DocsPage)

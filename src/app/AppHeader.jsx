@@ -23,7 +23,7 @@ class AppHeader extends React.Component {
                       defaultSelectedKeys={['docs']}
                       style={{lineHeight: '64px'}}>
                     <Menu.Item key="docs">
-                        <Link to="/docs">
+                        <Link to="/docs/intro/overview">
                             <Icon type="file-text" style={{fontSize: 12}}/>
                             <span style={{fontSize: 12}}>Documentation</span>
                         </Link>
