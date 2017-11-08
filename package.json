@@ -2,6 +2,7 @@
   "name": "antd-docs",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/docs",
   "dependencies": {
     "antd": "^2.13.8",
     "autobind-decorator": "^2.1.0",

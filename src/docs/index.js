@@ -3,7 +3,7 @@ export default [
     type: "section",
     title: "Introduction",
     path: "/intro",
-    icon: "laptop",
+    icon: "info-circle-o",
     children: [
       {
         type: "doc",
