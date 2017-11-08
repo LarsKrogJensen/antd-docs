@@ -1,14 +1,18 @@
 
-# h1 Heading 8-)
+# h1 Markdown Showcase 8-)
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
 ##### h5 Heading
 ###### h6 Heading
 
+Demo of refering to local image 
+
 ![markdow](images/icon256.png)
 
 ## Horizontal Rules
+
+[Internal link to contacts](#/docs/intro/contact)
 
 ___
 
@@ -29,7 +33,7 @@ ___
 
 This markdown file is also example.
 
-You can use SuperComponent with children
+Include an interactive query console in documentation is awesome
 
 ::: explorer
    query {

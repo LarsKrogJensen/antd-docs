@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Layout} from "antd";
-import DocsPage from "pages/DocsPage";
+import DocsPage from "pages/docs/DocsPage";
 import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
-import ExplorerPage from "pages/ExplorerPage";
+import ExplorerPage from "pages/explorer/ExplorerPage";
 import AppHeader from "./AppHeader";
 
 const {Content} = Layout;

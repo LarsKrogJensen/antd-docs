@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import autobind from "autobind-decorator"
 import {Link} from "react-router-dom";
 import {Icon, Menu} from "antd";
-import toc from "docs"
+import toc from "docs/index"
 
 const SubMenu = Menu.SubMenu;
 

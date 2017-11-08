@@ -27,7 +27,7 @@ class AppHeader extends React.Component {
         return (
             <Header style={{height: 64, width: '100%', display: "flex", alignItems: "center"}} className="header">
                 <img className="logo" src={logo} alt="logo"/>
-                <h1 style={{flex: 1, color: "rgba(255, 255, 255, 0.67)", marginLeft: 24}}>Statstics API</h1>
+                <h1 style={{flex: 1, color: "rgba(255, 255, 255, 0.67)", marginLeft: 24}}>Statstics & Results API</h1>
                 <Menu theme="dark"
                       mode="horizontal"
                       selectedKeys={selectedKeys}

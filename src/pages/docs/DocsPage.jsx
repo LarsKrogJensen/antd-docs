@@ -2,8 +2,8 @@ import * as React from "react"
 import { Layout } from "antd";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import autobind from "autobind-decorator"
-import DocsMenu from "pages/DocsMenu";
-import toc from "docs"
+import DocsMenu from "pages/docs/DocsMenu";
+import toc from "docs/index"
 import Markdown from "components/markdown/Markdown";
 import withMarkdown from "components/markdown/MarkdownContainer";
 
