@@ -21,8 +21,8 @@ class DocsPage extends React.Component {
                 <Sider width={200}
                        style={{background: '#fff', overflow: 'auto', height: '100vh', position: 'fixed', left: 0}}>
                     <Menu mode="inline"
-                          defaultSelectedKeys={['1']}
-                          defaultOpenKeys={['sub1']}
+                          defaultSelectedKeys={['/docs/intro/overview']}
+                          defaultOpenKeys={['/docs/intro']}
                           style={{paddingTop: 24, height: '100%'}}>
                         {this.renderTOC()}
                     </Menu>

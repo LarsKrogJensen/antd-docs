@@ -18,6 +18,8 @@ export default class Markdown extends React.Component {
         const mdSource = this.props.content;
 
         // split into markdown and container blocks
+
+        
         // a container is where we will render react components
         let blocks = this.split(mdSource);
         return (<div>{blocks}</div>)
