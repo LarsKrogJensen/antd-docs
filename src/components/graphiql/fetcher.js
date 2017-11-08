@@ -1,29 +1,18 @@
-import fetch from 'isomorphic-fetch';
+import axios from "axios"
 
-export default async function graphQuery(token, queryParams) {
-    let options = {
-        method: 'post',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: queryParams,
-    };
+export default function graphQuery(queryParams) {
 
-    let response = await fetch(baseUrl() + '/graphql', options);
-    if (response.ok)
-        return response.json();
-
-    throw new Error(response.statusText, response.status);
+  return axios.post(baseUrl() + "/graphql", queryParams)
+    .then(response => response.data)
 }
 
 function baseUrl() {
-    const win = window;
+  const win = window;
 
-    if (process.env.NODE_ENV === `development`) {
-        return "http://localhost:8080";
-    }
-    else {
-        return win.location.origin;
-    }
+  if (process.env.NODE_ENV === `development`) {
+    return "http://localhost:15133";
+  }
+  else {
+    return win.location.origin;
+  }
 }

@@ -5,10 +5,9 @@
   "dependencies": {
     "antd": "^2.13.8",
     "autobind-decorator": "^2.1.0",
+    "axios": "^0.17.0",
     "graphiql": "^0.11.10",
-    "graphql": "^0.11.7",
     "highlight.js": "^9.1.0",
-    "isomorphic-fetch": "^2.2.1",
     "markdown-it": "^6.0.0",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-container": "^2.0.0",
