@@ -17,10 +17,12 @@ export default class VoyagerPage extends React.Component {
 
     render() {
         return (
-            <Voyager introspection={introspectionProvider}
-                     hideDocs={false}
-                     workerURI={process.env.PUBLIC_URL + '/voyager.worker.js'}
-            />
+            <div className="voyager">
+                <Voyager introspection={introspectionProvider}
+                         hideDocs={false}
+                         workerURI={process.env.PUBLIC_URL + '/voyager.worker.js'}
+                />
+            </div>
         )
     }
 }
