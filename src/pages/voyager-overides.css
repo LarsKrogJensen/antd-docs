@@ -1,0 +1,15 @@
+.loading-box {
+    position: absolute;
+    left: 0px;
+    right: 0;
+    top: 64px;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 10;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: none;
+    color: #fff;
+}

@@ -1,5 +1,6 @@
 import * as React from "react"
 import {Voyager} from 'graphql-voyager';
+import "./voyager-overides.css"
 
 // import fetcher from "components/graphiql/fetcher"
 
@@ -17,7 +18,7 @@ export default class VoyagerPage extends React.Component {
     render() {
         return (
             <Voyager introspection={introspectionProvider}
-                     hideDocs={true}
+                     hideDocs={false}
                      workerURI={process.env.PUBLIC_URL + '/voyager.worker.js'}
             />
         )
