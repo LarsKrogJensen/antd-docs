@@ -4,6 +4,7 @@ import GraphiQL from "graphiql";
 import "graphiql/graphiql.css"
 import "./embedded.css"
 import fetcher from "./fetcher"
+import {Affix, Button} from "antd";
 // import {Button} from "antd";
 
 export default class EmbeddedQueryConsole extends React.Component {
@@ -11,10 +12,17 @@ export default class EmbeddedQueryConsole extends React.Component {
         return (
             <div className="embedded bordered graphiql">
                 {/*<Button type="primary">execute</Button>*/}
+                <Affix>
+                    <Button type="primary">
+                        execute
+                    </Button>
+                </Affix>
 
+                
                 <GraphiQL fetcher={fetcher}
                           embedded
                           query={this.props.query}>
+
                 </GraphiQL>
             </div>
         );

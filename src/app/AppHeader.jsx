@@ -18,7 +18,7 @@ class AppHeader extends React.Component {
         if (pathTokens.length > 0) {
             let selectedKey = pathTokens[0];
             selectedKeys.push(selectedKey);
-            if(selectedKey === "docs") {
+            if (selectedKey === "docs") {
                 // not nice but a way to remember last doc path
                 docPath = this.props.location.pathname
             }
@@ -37,6 +37,12 @@ class AppHeader extends React.Component {
                         <Link to={docPath}>
                             <Icon type="file-text" style={{fontSize: 12}}/>
                             <span style={{fontSize: 12}}>Documentation</span>
+                        </Link>
+                    </Menu.Item>
+                    <Menu.Item key="voyager">
+                        <Link to="/voyager">
+                            <Icon type="file-text" style={{fontSize: 12}}/>
+                            <span style={{fontSize: 12}}>Voyager</span>
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="explorer">
