@@ -1,5 +1,5 @@
 import * as React from "react"
-import {Icon, Layout} from "antd";
+import {Layout} from "antd";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import autobind from "autobind-decorator"
 import DocsMenu from "pages/docs/DocsMenu";

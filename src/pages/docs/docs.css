@@ -53,3 +53,13 @@
     right: 0;
     box-sizing: border-box;
 }
+
+.prev-next-nav > .next-page:hover:after {
+  color: #1890ff;
+  right: -3px;
+}
+
+.prev-next-nav > a.prev-page:hover:before {
+  color: #1890ff;
+  left: -3px;
+}
