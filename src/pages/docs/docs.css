@@ -1,0 +1,55 @@
+.prev-next-nav {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+    overflow: hidden;
+    font-size: 14px;
+    border-top: 1px solid #ebedf0;
+}
+
+.prev-page {
+    padding: 0 24px;
+    width: 50%;
+    float: left;
+    line-height: 72px;
+    height: 72px;
+    text-decoration: none;
+}
+
+.prev-page:before {
+    font-family: 'anticon';
+    content: '\E61C';
+    font-size: 12px;
+    margin-right: 1em;
+    color: #697b8c;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    position: relative;
+    left: 0;
+    box-sizing: border-box;
+}
+
+.next-page {
+    padding: 0 24px;
+    width: 50%;
+    line-height: 72px;
+    height: 72px;
+    text-decoration: none;
+    text-align: right;
+    float: right;
+}
+
+.next-page:after {
+    font-family: 'anticon';
+    content: '\E61B';
+    font-size: 12px;
+    margin-left: 1em;
+    color: #697b8c;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    position: relative;
+    right: 0;
+    box-sizing: border-box;
+}
