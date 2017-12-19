@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import SwaggerUi, {presets} from 'swagger-ui';
 import 'swagger-ui/dist/swagger-ui.css';
+import './swagger.css'
 
 export class SwaggerUI extends React.Component {
 
@@ -17,7 +18,7 @@ export class SwaggerUI extends React.Component {
 
     render() {
         return (
-            <div id="swaggerContainer"/>
+            <div id="swaggerContainer" className="swagger-wrapper"/>
         );
     }
 }
