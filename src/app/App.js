@@ -6,6 +6,7 @@ import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import ExplorerPage from "pages/explorer/ExplorerPage";
 import AppHeader from "./AppHeader";
 import VoyagerPage from "pages/VoyagerPage";
+import {SwaggerPage} from "pages/swagger/SwaggerPage";
 
 const {Content} = Layout;
 
@@ -22,6 +23,7 @@ export default class App extends Component {
                                 <Route path="/docs" component={DocsPage}/>
                                 <Route path="/voyager" component={VoyagerPage}/>
                                 <Route path="/explorer" component={ExplorerPage}/>
+                                <Route path="/swagger" component={SwaggerPage}/>
                             </Switch>
                         </div>
                     </Content>

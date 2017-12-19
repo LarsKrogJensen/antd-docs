@@ -51,6 +51,12 @@ class AppHeader extends React.Component {
                             <span style={{fontSize: 12}}>Explorer</span>
                         </Link>
                     </Menu.Item>
+                    <Menu.Item key="swagger">
+                        <Link to="/swagger">
+                            <Icon type="code-o" style={{fontSize: 13}}/>
+                            <span style={{fontSize: 12}}>Swagger</span>
+                        </Link>
+                    </Menu.Item>
                 </Menu>
             </Header>
         )
