@@ -7,6 +7,7 @@ import ExplorerPage from "pages/explorer/ExplorerPage";
 import AppHeader from "./AppHeader";
 import VoyagerPage from "pages/VoyagerPage";
 import {SwaggerPage} from "pages/swagger/SwaggerPage";
+import {RedocPage} from "pages/redoc/RedocPage";
 
 const {Content} = Layout;
 
@@ -24,6 +25,7 @@ export default class App extends Component {
                                 <Route path="/voyager" component={VoyagerPage}/>
                                 <Route path="/explorer" component={ExplorerPage}/>
                                 <Route path="/swagger" component={SwaggerPage}/>
+                                <Route path="/redoc" component={RedocPage}/>
                             </Switch>
                         </div>
                     </Content>
