@@ -51,7 +51,7 @@ export default class DocsMenu extends React.Component {
     renderSubMenu(section, path) {
         path = path + section.path;
         return (
-            <SubMenu key={path} title={<span><Icon type={section.icon}/>{section.title}</span>}>
+            <SubMenu key={path} title={<span><Icon type={section.icon}/><span>{section.title}</span></span>}>
                 {section.children.map(item => this.renderItem(item, path))}
             </SubMenu>
         )
