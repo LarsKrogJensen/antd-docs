@@ -29,11 +29,12 @@ class AppHeader extends React.Component {
                 <img className="logo" src={logo} alt="logo"/>
                 <h1 style={
                     {
-                        flex: 1, color: "rgba(255, 255, 255, 0.67)",
+                        flex: 1,
+                        color: "rgba(255, 255, 255, 0.67)",
                         marginLeft: 24,
                         whiteSpace: "nowrap"
                     }
-                }>Statstics & Results API</h1>
+                }>Statstics API</h1>
                 <Menu theme="dark"
                       mode="horizontal"
                       selectedKeys={selectedKeys}

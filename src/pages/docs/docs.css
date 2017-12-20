@@ -55,21 +55,21 @@
 }
 
 .prev-next-nav > .next-page:hover:after {
-  color: #1890ff;
-  right: -3px;
+    color: #1890ff;
+    right: -3px;
 }
 
 .prev-next-nav > a.prev-page:hover:before {
-  color: #1890ff;
-  left: -3px;
+    color: #1890ff;
+    left: -3px;
 }
 
 .docs-sider .ps-container .ps-scrollbar-y-rail {
-    left:3px !important;
+    left: 3px !important;
 }
 
 .docs-sider .ps-container .ps-scrollbar-y {
-    left:3px !important;
+    left: 3px !important;
 }
 
 .docs-sider .ps {
@@ -83,3 +83,15 @@
     position: fixed;
     left: 0;
 }
+
+.ps-scrollbar-y-rail {
+    z-index: 999999;
+}
+
+.docs-sider .ps-scrollbar-y-rail {
+    z-index: 999999;
+}
+
+/*.ps .ps__scrollbar-y-rail{ left: 0; }*/
+/*.ps .ps__scrollbar-x-rail{ display: none; }*/
+

@@ -62,7 +62,7 @@ export default class DocsMenu extends React.Component {
         path = path + item.path;
 
         return (
-            <Menu.Item key={path}>
+            <Menu.Item key={path} style={{zIndex: 0}}>
                 <Link to={path}>{item.title}</Link>
             </Menu.Item>
         )
