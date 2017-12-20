@@ -16,8 +16,7 @@ class DocsPage extends React.Component {
     render() {
         return (
             <Layout style={{background: '#fff'}}>
-                <Sider width={200}
-                       style={{background: '#fff', overflow: 'auto', height: '100vh', position: 'fixed', left: 0}}>
+                <Sider width={200} className="docs-sider">
                     <DocsMenu selectedKey={this.props.location.pathname}/>
                 </Sider>
 

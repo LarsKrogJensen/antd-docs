@@ -63,3 +63,23 @@
   color: #1890ff;
   left: -3px;
 }
+
+.docs-sider .ps-container .ps-scrollbar-y-rail {
+    left:3px !important;
+}
+
+.docs-sider .ps-container .ps-scrollbar-y {
+    left:3px !important;
+}
+
+.docs-sider .ps {
+    z-index: 10;
+}
+
+.docs-sider {
+    background: #fff;
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+}

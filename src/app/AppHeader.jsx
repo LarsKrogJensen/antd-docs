@@ -27,12 +27,18 @@ class AppHeader extends React.Component {
         return (
             <Header style={{height: 64, width: '100%', display: "flex", alignItems: "center"}} className="header">
                 <img className="logo" src={logo} alt="logo"/>
-                <h1 style={{flex: 1, color: "rgba(255, 255, 255, 0.67)", marginLeft: 24}}>Statstics & Results API</h1>
+                <h1 style={
+                    {
+                        flex: 1, color: "rgba(255, 255, 255, 0.67)",
+                        marginLeft: 24,
+                        whiteSpace: "nowrap"
+                    }
+                }>Statstics & Results API</h1>
                 <Menu theme="dark"
                       mode="horizontal"
                       selectedKeys={selectedKeys}
                       defaultSelectedKeys={['docs']}
-                      style={{lineHeight: '64px'}}>
+                      style={{lineHeight: '64px', maxHeight: 64}}>
                     <Menu.Item key="docs">
                         <Link to={docPath}>
                             <Icon type="file-text" style={{fontSize: 12}}/>

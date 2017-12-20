@@ -48,7 +48,8 @@ export default [
                 title: "Reference",
                 path: "/ref",
                 md: require("docs/dev/ref.md")
-            },
+            }
+            ,
             {
                 type: "doc",
                 title: "Reference",
