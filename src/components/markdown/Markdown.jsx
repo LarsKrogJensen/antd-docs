@@ -1,7 +1,6 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import markdownIt from 'markdown-it';
-import hljs from 'highlight.js'
 import emoji from "markdown-it-emoji"
 import deflist from "markdown-it-deflist"
 import abbr from "markdown-it-abbr"
@@ -10,23 +9,18 @@ import imsize from "markdown-it-imsize"
 import "./markdown.css"
 import autobind from "autobind-decorator"
 import EmbeddedQueryConsole from "components/graphiql/EmbeddedQueryConsole";
+import {highlight} from "lib/highlight";
 
 
 export default class Markdown extends React.Component {
 
     render() {
-        const mdSource = this.props.content;
-
-        // split into markdown and container blocks
-
-        
-        // a container is where we will render react components
-        let blocks = this.split(mdSource);
+        let blocks = this.splitIntoMarkdownBlocks(this.props.content);
         return (<div>{blocks}</div>)
     }
 
     @autobind
-    split(mdSource) {
+    splitIntoMarkdownBlocks(mdSource) {
         let blocks = mdSource.split(":::");
 
         return blocks.map((block, index) => {
@@ -48,15 +42,7 @@ export default class Markdown extends React.Component {
     renderMarkdown(source, key) {
         const md = markdownIt({
             highlight(str, lang) {
-                if (lang && hljs.getLanguage(lang)) {
-                    try {
-                        return hljs.highlight(lang, str, true).value;
-                    } catch (__) {/* */
-                    }
-                }
-                return (
-                    `${md.utils.escapeHtml(str)}`
-                );
+                return highlight(str, lang)
             },
         }).use(emoji)
             .use(abbr)
