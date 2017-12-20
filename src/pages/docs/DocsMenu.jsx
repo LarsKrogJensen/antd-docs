@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import autobind from "autobind-decorator"
 import {Link} from "react-router-dom";
 import {Icon, Menu} from "antd";
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import toc from "docs/index"
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 const SubMenu = Menu.SubMenu;
 
@@ -17,13 +19,16 @@ export default class DocsMenu extends React.Component {
             stateOpenKeys = this.findAllRootSectionPaths()
 
         return (
-            <Menu mode="inline"
-                  onOpenChange={(openKeys => stateOpenKeys = openKeys)}   // save state
-                  selectedKeys={[this.props.selectedKey]}
-                  defaultOpenKeys={stateOpenKeys}
-                  style={{paddingTop: 24, height: '100%'}}>
-                {this.renderTOC()}
-            </Menu>)
+            <PerfectScrollbar>
+                <Menu mode="inline"
+                      onOpenChange={(openKeys => stateOpenKeys = openKeys)}   // save state
+                      selectedKeys={[this.props.selectedKey]}
+                      defaultOpenKeys={stateOpenKeys}
+                      style={{paddingTop: 24, height: '100%'}}>
+                    {this.renderTOC()}
+                </Menu>
+            </PerfectScrollbar>
+        )
     }
 
     @autobind
