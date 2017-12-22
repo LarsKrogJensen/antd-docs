@@ -1,0 +1,41 @@
+.app-logo {
+    padding-bottom: 4px;
+}
+
+.app-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.app-content {
+    flex: 1;
+    overflow: auto;
+}
+
+.app-header {
+    height: 64px;
+    max-height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.app-header-title {
+    flex: 1;
+    color: rgba(255, 255, 255, 0.67);
+    margin-left: 24px;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.app-header-menu {
+    line-height: 50px;
+    display: flex;
+}

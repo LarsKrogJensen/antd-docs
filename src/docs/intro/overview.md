@@ -1,282 +1,56 @@
+# Introduction
 
-# h1 Markdown Showcase 8-)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
+Welcome to Kambi Statistics GraphQL API where we provide access to data
+and functionality.
 
-Demo of refering to local image 
+### What is the Kambi Statistics GraphQL API?
 
-![markdow](images/icon256.png)
+This API serves results and statistics for past events.
 
-## Horizontal Rules
+As a player you might want to see the result of a game or race after it
+has ended and been settled. Other APIs often only hold the current and
+upcoming events. It is possible to query for a specific event by id or
+all results for a given sport during a specified period of time.
 
-[Internal link to contacts](#/docs/intro/contact)
+The API is modeled using GraphQL.
 
-___
 
----
+### What is GraphQL?
+The [GraphQL](http://graphql.org/) data query language is:
 
-***
+- A [specification](http://facebook.github.io/graphql/).
+  The spec determines the validity of the schema on the API server.
+  The schema determines the validity of client calls.
 
-::: warning      
-*This Warning Box.*
-:::
+- [Strongly typed](http://graphql.org/learn/schema/).
+  The schema defines an API's type system and all object relationships.
 
-::: info      
-*This Info Box.*
-:::
+- [Introspective](http://graphql.org/learn/introspection/).
+  A client can query the schema for details about the schema.
 
+- Hierarchical. The shape of a GraphQL call mirrors the shape of the JSON
+  data it returns. Nested fields let you query for and receive only the
+  data you specify in a single round trip.
 
-## Example
+- An application layer. GraphQL is not a storage model or a database
+  query language. The graph refers to graph structures defined in the
+  schema, where nodes define objects and edges define relationships
+  between objects. The API traverses and returns application data based
+  on the schema definitions, independent of how the data is stored.
 
-This markdown file is also example.
+### Why is Kambi using GraphQL?
+Kambi chose GraphQL for our Statistics API because it offers significantly
+more flexibility for our operators. The ability to define precisely the
+data you want-and only the data you want-is a powerful advantage over
+the REST API endpoints. GraphQL lets you replace multiple REST requests
+with a single call to fetch the data you specify.
 
-Include an interactive query console in documentation is awesome
 
-::: explorer
-   query {
-    listing (if
-        id
-        name
-   }
-:::
-  
- 
-lalaal
+### Versioning
+The version of the Statistics API is given in the URL to GraphQL.
+Initial version is "v2018" and is guaranteed to exist for two years.
 
-::: explorer
-   query {
-    listing (if
-        id
-        name
-   }
-:::
-
-lalala
-
-  
-## Typographic replacements
-
-Enable typographer option to see result.
-
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
-
-test.. test... test..... test?..... test!....
-
-!!!!!! ???? ,,  -- ---
-
-"Smartypants, double quotes" and 'single quotes'
-
-
-## Emphasis
-
-**This is bold text**
-
-__This is bold text__
-
-*This is italic text*
-
-_This is italic text_
-
-~~Strikethrough~~
-
-
-## Blockquotes
-
-
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
-
-
-## Lists
-
-Unordered
-
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
-
-Ordered
-
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-
-
-## Code
-
-Inline `code`
-
-
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-
-Block code "fences"
-
-```
-Sample text here...
-```
-
-Syntax highlighting
-
-``` js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-
-## Tables
-
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-Right aligned columns
-
-| Option | Description |
-| ------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-
-## Links
-
-[link text](http://dev.nodeca.com)
-
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
-
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
-
-
-## Images
-
-![Minion](https://octodex.github.com/images/minion.png =250x)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat" =250x)
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-
-## Plugins
-
-The killer feature of `markdown-it` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
-
-
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
-
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
-
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
-- 19^th^
-- H~2~O
-
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Inserted text++
-
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
-==Marked text==
-
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
-
-Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-        { some code, part of Definition 2 }
-
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-  ~ Definition 1
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
-
-This is HTML abbreviation example.
-
-It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
-
-*[HTML]: Hyper Text Markup Language
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*here be dragons*
-:::
-
-asasas
-
-::: warning
-{ lars }
-:::
+GraphQL has some very powerful features making it easier to evolve the API.
+One that is deprecation. A field might be deprecated and offer information
+on an alternative field. Another is that is safe to add new fields to a node
+since clients will not receive fields they don't request.

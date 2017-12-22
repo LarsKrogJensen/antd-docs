@@ -8,8 +8,14 @@ export default [
             {
                 type: "doc",
                 title: "Overview",
-                path: "/overview",
+                path: "/introduction",
                 md: require("docs/intro/overview.md")
+            },
+            {
+                type: "doc",
+                title: "Statistics API",
+                path: "/statistics",
+                md: require("docs/intro/statistics.md")
             },
             {
                 type: "doc",
@@ -27,113 +33,59 @@ export default [
     },
     {
         type: "section",
-        title: "Developer guide",
-        path: "/dev",
+        title: "GraphQL",
+        path: "/graphql",
         icon: "laptop",
         children: [
             {
                 type: "doc",
-                title: "Overview",
-                path: "/overview",
-                md: require("docs/dev/overview.md")
+                title: "Introduction to GraphQL",
+                path: "/intro",
+                md: require("docs/graphql/intro.md")
             },
             {
                 type: "doc",
-                title: "Domain Model",
-                path: "/domain",
-                md: require("docs/dev/domain.md")
+                title: "Making requests",
+                path: "/making_requests",
+                md: require("docs/graphql/making_requests.md")
+            },
+            {
+                type: "doc",
+                title: "Handle errors",
+                path: "/errors",
+                md: require("docs/graphql/errors.md")
+            },
+            {
+                type: "doc",
+                title: "Working with variables",
+                path: "/variables",
+                md: require("docs/graphql/variables.md")
+            },
+            {
+                type: "doc",
+                title: "Localization",
+                path: "/localization",
+                md: require("docs/graphql/localization.md")
+            },
+            {
+                type: "doc",
+                title: "Pagination",
+                path: "/pagination",
+                md: require("docs/graphql/pagination.md")
+            },
+            {
+                type: "doc",
+                title: "Resource limitations",
+                path: "/limits",
+                md: require("docs/graphql/limits.md")
             },
             {
                 type: "doc",
                 title: "Reference",
                 path: "/ref",
-                md: require("docs/dev/ref.md")
+                md: require("docs/graphql/ref.md")
             }
-            ,
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            },
-            {
-                type: "doc",
-                title: "Reference",
-                path: "/ref",
-                md: require("docs/dev/ref.md")
-            }
+
         ]
     }
 ];

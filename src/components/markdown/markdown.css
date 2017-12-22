@@ -8,10 +8,15 @@
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
     color: #333;
-    font-family: "Raleway", "Segoe UI", "Helvetica Neue", Helvetica,  Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Raleway", "Segoe UI", "Helvetica Neue", Helvetica, Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
     line-height: 1.6;
+    max-width: 800px;
     word-wrap: break-word;
+}
+
+.shell {
+    color: whitesmoke;
 }
 
 .github-markdown__markdown-body__97ba8 a {
@@ -30,6 +35,7 @@
 .github-markdown__markdown-body__97ba8 h1 {
     font-size: 2em;
     margin: 0.67em 0;
+    /*color: #00C1DE;*/
 }
 
 .github-markdown__markdown-body__97ba8 img {
@@ -136,22 +142,27 @@
 
 .github-markdown__markdown-body__97ba8 h2 {
     font-size: 21px;
+    /*color: #00C1DE;*/
 }
 
 .github-markdown__markdown-body__97ba8 h3 {
     font-size: 16px;
+    /*color: #00C1DE;*/
 }
 
 .github-markdown__markdown-body__97ba8 h4 {
     font-size: 14px;
+    /*color: #00C1DE;*/
 }
 
 .github-markdown__markdown-body__97ba8 h5 {
     font-size: 12px;
+    /*color: #00C1DE;*/
 }
 
 .github-markdown__markdown-body__97ba8 h6 {
     font-size: 11px;
+    /*color: #00C1DE;*/
 }
 
 .github-markdown__markdown-body__97ba8 blockquote {
@@ -664,12 +675,6 @@
     border-color: #4078c0;
 }
 
-/*
-
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
-
-*/
-
 .github__hljs__32daa {
     display: block;
     overflow-x: auto;
@@ -764,6 +769,19 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     font-weight: bold;
 }
 
+.shell {
+    margin-bottom: 8px;
+    margin-top: 8px;
+    position: relative;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    background: black;
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 800px;
+}
+
 .alert {
     margin-bottom: 8px;
     margin-top: 8px;
@@ -773,6 +791,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     color: rgba(0, 0, 0, .65);
     font-size: 12px;
     line-height: 1.5;
+    max-width: 800px;
 }
 
 .alert-error {

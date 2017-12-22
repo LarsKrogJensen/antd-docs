@@ -1,17 +1,18 @@
 
-# h1 Heading 8-)
+# h1 Markdown Showcase 8-)
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
 ##### h5 Heading
 ###### h6 Heading
 
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
+Demo of refering to local image 
 
-
-<SuperComponent />
+![markdow](images/icon256.png)
 
 ## Horizontal Rules
+
+[Internal link to contacts](#/docs/intro/contact)
 
 ___
 
@@ -19,19 +20,43 @@ ___
 
 ***
 
-## Example
-
-::: warning
-*here be dragons*
+::: warning      
+*This Warning Box.*
 :::
+
+::: info      
+*This Info Box.*
+:::
+
+
+## Example
 
 This markdown file is also example.
 
-You can use SuperComponent with children
+Include an interactive query console in documentation is awesome
 
+::: explorer
+query {
+   meeting(meetingId: "1") {
+     id
+   }
+}      
+:::
+  
+ 
+lalaal
 
-[Query console, click to view](http://github.io/react-components-markdown/#exampleConsole)
+::: explorer
+{
+   meeting(meetingId: "2") {
+     id
+   }
+} 
+:::
 
+lalala
+
+  
 ## Typographic replacements
 
 Enable typographer option to see result.
@@ -98,6 +123,7 @@ Start numbering with offset:
 
 Inline `code`
 
+
 Indented code
 
     // Some comments
@@ -150,8 +176,8 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
 ## Images
 
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Minion](https://octodex.github.com/images/minion.png =250x)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat" =250x)
 
 Like links, Images also have a footnote style syntax
 
@@ -247,4 +273,10 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
 ::: warning
 *here be dragons*
+:::
+
+asasas
+
+::: warning
+{ lars }
 :::
