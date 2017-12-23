@@ -16,15 +16,18 @@ class AppHeader extends React.Component {
     return (
       <Header className="app-header">
         <img className="app-logo" src={logo} alt="logo"/>
-        <MediaQuery minWidth={500}>
-          {(matches) => {
-            if (matches) {
-              return <h1 className="app-header-title">Offering API</h1>
-            } else {
-              return <h1 className="app-header-title"> </h1>
-            }
-          }}
-        </MediaQuery>
+        {/*<MediaQuery minWidth={500}>*/}
+          {/*{(matches) => {*/}
+            {/*if (matches) {*/}
+              {/*return <h1 className="app-header-title">Offering API</h1>*/}
+            {/*} else {*/}
+              {/*return <h1 className="app-header-title"> </h1>*/}
+            {/*}*/}
+          {/*}}*/}
+        {/*</MediaQuery>*/}
+        <div className="app-header-title-wrapper">
+            <h1 className="app-header-title">Offering API</h1>
+        </div>
         <MediaQuery minWidth={750}>
           {(matches) => {
             if (matches) {
