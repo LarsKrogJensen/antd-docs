@@ -68,7 +68,7 @@ class AppHeader extends React.Component {
         <Menu.Item key="explorer">
           <Link to="/explorer">
             <Icon type="code-o" style={{ fontSize: 18 }}/>
-            {withTitles && <span style={{ fontSize: 14 }}>Explorer</span>}
+            <span className={`app-menu-title ${withTitles ? "grow" : "shrink"}`}>Explorer</span>
           </Link>
         </Menu.Item>
       </Menu>

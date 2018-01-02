@@ -8,7 +8,7 @@ module.exports = function override(config, env) {
     modifyVars: {
       "@primary-color": "#00C1DE",
       "@font-size-base": "12px",
-      "@font-family-no-number": "Raleway"
+      "@font-family-no-number": "Roboto"
     },
   })(config, env);
   config = injectBabelPlugin('transform-decorators-legacy', config);
