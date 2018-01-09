@@ -1,5 +1,5 @@
 import * as React from "react"
-import PropTypes from "prop-types"
+import * as PropTypes from "prop-types"
 import autobind from "autobind-decorator"
 import {Link} from "react-router-dom";
 import {Icon, Menu} from "antd";
@@ -74,6 +74,6 @@ export default class DocsMenu extends React.Component {
     }
 }
 
-DocsMenu.PropTypes = {
+DocsMenu.propTypes = {
     selectedKey: PropTypes.string
 }

@@ -6,6 +6,9 @@
     display: none;
 }
 
+.embedded .graphiql-container .docExplorerWrap {
+}
+
 .bordered {
     height: 200px;
     margin: 0;

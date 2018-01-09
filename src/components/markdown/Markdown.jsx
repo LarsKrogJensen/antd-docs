@@ -89,5 +89,5 @@ export default class Markdown extends React.Component {
 }
 
 Markdown.propTypes = {
-    content: PropTypes.string
+    content: PropTypes.string.isRequired
 };

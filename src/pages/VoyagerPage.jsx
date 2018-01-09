@@ -5,7 +5,7 @@ import "./voyager-overides.css"
 // import fetcher from "components/graphiql/fetcher"
 
 function introspectionProvider(query) {
-    return fetch('http://localhost:8080/graphql', {
+    return fetch('http://localhost:15133/v2018/graphql', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({query: query}),
