@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 import { Layout } from "antd";
 import DocsPage from "pages/docs/DocsPage";
-import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import AppHeader from "./AppHeader";
 import {SwaggerPage} from "pages/swagger/SwaggerPage";
 
