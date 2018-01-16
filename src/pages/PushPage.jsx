@@ -17,18 +17,20 @@ export class PushPage extends React.Component {
 
         this.socket.on("connect", (socket) => {
             console.log("Socket connected");
-        })
-        this.socket.on("connection", (socket) => {
-            console.log("Socket connected");
+            this.socket.emit('subscribe', {topic: "kambiplay.ev.json"})
         })
 
         this.socket.on("message", data => {
-            console.log("message: " + data);
+            const messages = JSON.parse(data)
+            console.log("messages length: " + messages.length);
+            for (let msg of messages) {
+                console.table(msg)
+            }
         })
 
         this.socket.open()
         // this.socket.connect()
-        this.socket.emit('subscribe', {topic: "kambiplay.ev.json"})
+
     }
 
     componentWillUnmount(): void {
