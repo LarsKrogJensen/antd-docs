@@ -5,6 +5,7 @@ import DocsPage from "pages/docs/DocsPage";
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import AppHeader from "./AppHeader";
 import {SwaggerPage} from "pages/swagger/SwaggerPage";
+import {PushPage} from "pages/PushPage";
 
 const { Content } = Layout;
 
@@ -20,6 +21,7 @@ export default class App extends Component {
                 <Redirect exact path="/" to="/docs"/>
                 <Route path="/docs" component={DocsPage}/>
                 <Route path="/explorer" component={SwaggerPage}/>
+                <Route path="/push" component={PushPage}/>
               </Switch>
             </div>
           </Content>
