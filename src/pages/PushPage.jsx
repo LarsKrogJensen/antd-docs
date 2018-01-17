@@ -1,6 +1,6 @@
 import * as React from "react"
 import io from 'socket.io-client'
-import { Input, Table, Tag, Button } from "antd";
+import { Button, Input, Table, Tag, Modal } from "antd";
 import moment from "moment";
 import autobind from "autobind-decorator"
 
@@ -21,7 +21,8 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
     messages: [],
     subscriptions: [],
     textFilter: "",
-    typeFilter: []
+    typeFilter: [],
+    showMessage: undefined
   }
 
   columns = [
@@ -44,7 +45,9 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
       dataIndex: "body",
       key: "body",
       width: 500,
-      render: (text, record) => JSON.stringify(record.body)
+      render: (text, record) => <a onClick={(e) => {
+        this.setState({ showMessage: record })
+      }}>{JSON.stringify(this.messageTypeToPayload(record))}</a>
     }
   ]
 
@@ -86,14 +89,14 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
   }
 
   render(): React.ReactNode {
-    const { messages, subscriptions } = this.state
+    const { messages, subscriptions, showMessage } = this.state
     return <div>
-      <div style={{margin: 8, display: "flex", flexDirection: "row"}}>
+      <div style={{ margin: 8, display: "flex", flexDirection: "row" }}>
         <Search placeholder="input routing key"
                 enterButton="Subscribe"
                 onSearch={this.handleSubscribe}
-                style={{width: 400 }}/>
-         <div style={{flex: 1}}/>
+                style={{ width: 400 }}/>
+        <div style={{ flex: 1 }}/>
         <Button onClick={this.handleClearMessages}>Clear</Button>
       </div>
       {this.renderSubscriptionTags(subscriptions)}
@@ -103,7 +106,23 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
         rowKey="rowKey"
         dataSource={messages}
         pagination={false} size="small"/>
+
+      {this.renderMessage(showMessage)}
     </div>
+  }
+
+  @autobind
+  renderMessage(message: Message) {
+    if (message) {
+      return (
+        <Modal
+          title="Basic Modal"
+          visible
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}>
+          <p>{JSON.stringify(message.body)}</p>
+        </Modal>)
+    }
   }
 
   @autobind
@@ -122,7 +141,7 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
 
   @autobind
   handleClearMessages() {
-    this.setState({messages: []})
+    this.setState({ messages: [] })
   }
 
   @autobind
@@ -219,6 +238,52 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
         return `LiveStatistics (${type})`
       default:
         return `UNKNOWN (${type})`
+    }
+  }
+
+  @autobind
+  messageTypeToPayload(message: Message) {
+    switch (message.type) {
+      case 4:
+        return message.body.ea
+      case 5:
+        return message.body.leo
+      case 6:
+        return message.body.boa
+      case 7:
+        return message.body.bor
+      case 8:
+        return message.body.bosu
+      case 9:
+        return message.body.abos
+      case 11:
+        return message.body.boou
+      case 12:
+        return message.body.mcr
+      case 15:
+        return message.body.mcu
+      case 16:
+        return message.body.score
+      case 17:
+        return message.body.stats
+      case 18:
+        return message.body.er
+      case 19:
+        return message.body.tu
+      case 20:
+        return message.body.desc
+      case 22:
+        return message.body.booa
+      case 23:
+        return message.body.boor
+      case 25:
+        return message.body.mo
+      case 27:
+        return message.body.vo
+      case 28:
+        return message.body.ls
+      default:
+        return undefined
     }
   }
 }
