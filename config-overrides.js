@@ -7,14 +7,14 @@ module.exports = function override(config, env) {
   config = rewireLess.withLoaderOptions({
     modifyVars: {
       "@primary-color": "#00C1DE",
-      "@font-size-base": "12px",
+      "@font-size-base": "13px",
       "@font-family-no-number": "Roboto"
     },
   })(config, env);
   config = injectBabelPlugin('transform-decorators-legacy', config);
 
   // config.resolve.modules = [
-  //   path.resolve('./node_modules'),
+  //   path.resolve('node_modules'),
   //   path.resolve('./src')
   // ]
   // console.log("Env: " + env)

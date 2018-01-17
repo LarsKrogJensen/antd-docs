@@ -12,26 +12,19 @@ let docPath = "/docs/intro/overview"
 
 class AppHeader extends React.Component {
 
-    render() {
-        return (
-            <Header className="app-header">
-                <img className="app-logo" src={logo} alt="logo"/>
-
-                <div className="app-header-title-wrapper">
-                    <h1 className="app-header-title">Offering API</h1>
-                </div>
-                <MediaQuery minWidth={750}>
-                    {(matches) => {
-                        if (matches) {
-                            return this.renderMenu(true)
-                        } else {
-                            return this.renderMenu(false)
-                        }
-                    }}
-                </MediaQuery>
-            </Header>
-        )
-    }
+  render() {
+    return (
+      <Header className="app-header">
+        <img className="app-logo" src={logo} alt="logo"/>
+        <div className="app-header-title-wrapper">
+            <h1 className="app-header-title">Offering API</h1>
+        </div>
+        <MediaQuery minWidth={750}>
+          {(matches) => this.renderMenu(matches) }
+        </MediaQuery>
+      </Header>
+    )
+  }
 
     renderMenu(withTitles) {
         const selectedKeys = [];
