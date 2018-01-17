@@ -1,9 +1,14 @@
 import * as React from "react"
 import io from 'socket.io-client'
+import {Table} from "antd";
 
 
 export class PushPage extends React.Component {
     socket: SocketIOClient.Socket
+
+    state = {
+        messages: []
+    }
 
     componentDidMount(): void {
         // this.socket = io(`wss://e1-push.aws.kambicdn.com/socket.io/?EIO=3&transport=websocket`, {
@@ -39,9 +44,10 @@ export class PushPage extends React.Component {
         this.socket.on("message", data => {
             const messages = JSON.parse(data)
             console.log("messages length: " + messages.length);
-            // for (let msg of messages) {
-            //     console.table(msg)
-            // }
+
+            this.setState(prevState => ({
+                messages: [...prevState.messages, ...messages.map(msg => ({time: msg.t, type: msg.mt, body: msg}))]
+            }))
         })
 
         this.socket.open()
@@ -54,6 +60,33 @@ export class PushPage extends React.Component {
     }
 
     render(): React.ReactNode {
-        return <div>Push Page</div>
+        const columns = [
+            {
+                title: "Time",
+                dataIndex: "time",
+                key: "time",
+                width: 100
+            },
+            {
+                title: "Type",
+                dataIndex: "type",
+                key: "type",
+                width: 100
+            },
+            {
+                title: "Message",
+                dataIndex: "body",
+                key: "body",
+                width: 500,
+                render: (text, record) => <div style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis"}}>{JSON.stringify(record.body.boou)}</div>
+            }
+        ]
+
+        return <div>
+            <Table columns={columns} dataSource={this.state.messages} pagination={false} size="small"/>
+        </div>
     }
 }
