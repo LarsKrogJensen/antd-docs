@@ -4,6 +4,8 @@ import { Button, Input, Modal, Tag } from "antd";
 import autobind from "autobind-decorator"
 import 'react-virtualized/styles.css'
 import { AutoSizer, List } from "react-virtualized"
+import moment from "moment"
+import { highlight } from "lib/highlight";
 
 const Search = Input.Search;
 
@@ -20,11 +22,21 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
 
   state = {
     messages: [],
+    pending: [],
     subscriptions: [],
-    textFilter: "",
-    typeFilter: [],
-    showMessage: undefined
+    showMessage: undefined,
+    paused: false
   }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext): boolean {
+    if (nextState.messages.length !== this.state.messages.length) return true
+    if (nextState.subscriptions.length !== this.state.subscriptions.length) return true
+    if (nextState.paused !== this.state.paused) return true
+    if (nextState.showMessage !== this.state.showMessage) return true
+
+    return false
+  }
+
 
   componentDidMount(): void {
     this.socket = io(`wss://e1-push.aws.kambicdn.com`, {
@@ -64,7 +76,7 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
   }
 
   render(): React.ReactNode {
-    const { messages, subscriptions, showMessage } = this.state
+    const { messages, subscriptions, showMessage, paused } = this.state
     return <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <div>
         <div style={{ margin: 8, display: "flex", flexDirection: "row" }}>
@@ -73,7 +85,9 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
                   onSearch={this.handleSubscribe}
                   style={{ width: 400 }}/>
           <div style={{ flex: 1 }}/>
-          <Button onClick={this.handleClearMessages}>Clear</Button>
+          <Button onClick={this.togglePaused}
+                  icon={paused ? "caret-right" : "pause"}>{paused ? "Resume" : "Pause"}</Button>
+          <Button onClick={this.handleClearMessages} icon="delete" style={{ marginLeft: 8 }}>Clear</Button>
         </div>
       </div>
 
@@ -85,11 +99,12 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
                   rowCount={messages.length}
                   rowHeight={50}
                   rowRenderer={this.renderListRow}
+                  style={{outline: "none"}}
                   width={width}/>
           )}
         </AutoSizer>
       </div>
-      {this.renderMessage(showMessage)}
+      {this.renderMessageDialog(showMessage)}
     </div>
   }
 
@@ -101,23 +116,45 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
                   isVisible,   // This row is visible within the List (eg it is not an overscanned row)
                   style        // Style object to be applied to row (to position it)
                 }) {
+    const message: Message = this.state.messages[index];
     return (
-      <div key={key} style={{ ...style, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
-        {JSON.stringify(this.state.messages[index].body)}
+      <div key={key} style={{
+        ...style,
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: 8,
+        paddingRight: 8,
+        background: index % 2 === 0 ? "white" : "#f5f5f5"
+      }}>
+        <div style={{
+          display: "flex", flexDirection: "row", marginBottom: 4
+        }}>
+          <div style={{ witdh: 100 }}>
+            {moment.unix(message.time / 1000).format("HH:mm:ss.SSS")}
+          </div>
+          <div style={{ marginLeft: 16 }}>
+            {this.messageTypeToText(message.type)}
+          </div>
+        </div>
+        <div style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", flex: 1 }}>
+          <a onClick={() => this.setState({showMessage: message})}>{JSON.stringify(this.messageTypeToPayload(message))}</a>
+        </div>
       </div>
     )
   }
 
   @autobind
-  renderMessage(message: Message) {
+  renderMessageDialog(message: Message) {
     if (message) {
+      const html = "<pre>" + highlight(JSON.stringify(message.body, null, 2), "json") + "</pre>"
       return (
         <Modal
-          title="Basic Modal"
+          title="Message"
           visible
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}>
-          <p>{JSON.stringify(message.body)}</p>
+          footer={null}
+          onOk={() => this.setState({showMessage: undefined})}
+          onCancel={() => this.setState({showMessage: undefined})}>
+          <div dangerouslySetInnerHTML={{__html: html}}/>
         </Modal>)
     }
   }
@@ -139,6 +176,21 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
   @autobind
   handleClearMessages() {
     this.setState({ messages: [] })
+  }
+
+  @autobind
+  togglePaused() {
+    this.setState(prevState => {
+      let messages = [...prevState.pending, ...prevState.messages]
+      if (messages.length > 500) {
+        messages = messages.slice(400, messages.length - 1)
+      }
+      return {
+        messages,
+        pending: [],
+        paused: !prevState.paused
+      }
+    })
   }
 
   @autobind
@@ -165,24 +217,30 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
 
   @autobind
   processData(data: any) {
-    const parsedData = JSON.parse(data)
+    const parsedData = JSON.parse(data).map(msg => (
+      {
+        rowKey: this.uniqueRowKey(),
+        time: msg.t,
+        type: msg.mt,
+        body: msg
+      })).sort((a, b) => b.time - a.time);
+
     this.setState(prevState => {
-      let messages = prevState.messages;
 
-      messages.unshift(...parsedData.map(msg => (
-        {
-          rowKey: this.uniqueRowKey(),
-          time: msg.t,
-          type: msg.mt,
-          body: msg
-        })).sort((a, b) => b.time - a.time)
-      )
-      if (messages.length > 500) {
-        messages = messages.slice(400, messages.length - 1)
-      }
+      if (prevState.paused) {
+        return {
+          pending: [...parsedData, ...prevState.pending,]
+        }
+      } else {
+        let messages = [...parsedData, ...prevState.messages]
 
-      return {
-        messages
+        if (messages.length > 500) {
+          messages = messages.slice(400, messages.length - 1)
+        }
+
+        return {
+          messages
+        }
       }
     })
   }
@@ -285,8 +343,3 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
     }
   }
 }
-
-// render: (text, record) => <div style={{
-//   whiteSpace: "nowrap",
-//   textOverflow: "ellipsis"}}>{JSON.stringify(record.body)}</div>
-// overflow: "hidden",
