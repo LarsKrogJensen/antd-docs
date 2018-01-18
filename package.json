@@ -16,7 +16,7 @@
     "markdown-it-imsize": "^2.0.1",
     "markdown-it-toc-and-anchor": "^4.1.2",
     "moment": "^2.20.1",
-    "prismjs": "^1.9.0",
+    "prismjs": "^1.10.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -24,7 +24,8 @@
     "react-responsive": "^4.0.3",
     "react-reveal": "^0.7.3",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
+    "react-scripts": "1.1.0",
+    "react-virtualized": "^9.17.3",
     "socket.io-client": "^2.0.4",
     "swagger-ui": "^3.9.1"
   },

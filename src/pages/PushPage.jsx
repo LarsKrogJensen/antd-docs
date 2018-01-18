@@ -1,8 +1,9 @@
 import * as React from "react"
 import io from 'socket.io-client'
-import { Button, Input, Table, Tag, Modal } from "antd";
-import moment from "moment";
+import { Button, Input, Modal, Tag } from "antd";
 import autobind from "autobind-decorator"
+import 'react-virtualized/styles.css'
+import { AutoSizer, List } from "react-virtualized"
 
 const Search = Input.Search;
 
@@ -24,32 +25,6 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
     typeFilter: [],
     showMessage: undefined
   }
-
-  columns = [
-    {
-      title: "Time",
-      dataIndex: "time",
-      key: "time",
-      width: 100,
-      render: (text, record) => moment.unix(record.time / 1000).format("hh:mm:ss.SSS")
-    },
-    {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
-      width: 100,
-      render: (text, record) => this.messageTypeToText(record.type)
-    },
-    {
-      title: "Message",
-      dataIndex: "body",
-      key: "body",
-      width: 500,
-      render: (text, record) => <a onClick={(e) => {
-        this.setState({ showMessage: record })
-      }}>{JSON.stringify(this.messageTypeToPayload(record))}</a>
-    }
-  ]
 
   componentDidMount(): void {
     this.socket = io(`wss://e1-push.aws.kambicdn.com`, {
@@ -90,25 +65,47 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
 
   render(): React.ReactNode {
     const { messages, subscriptions, showMessage } = this.state
-    return <div>
-      <div style={{ margin: 8, display: "flex", flexDirection: "row" }}>
-        <Search placeholder="input routing key"
-                enterButton="Subscribe"
-                onSearch={this.handleSubscribe}
-                style={{ width: 400 }}/>
-        <div style={{ flex: 1 }}/>
-        <Button onClick={this.handleClearMessages}>Clear</Button>
+    return <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+      <div>
+        <div style={{ margin: 8, display: "flex", flexDirection: "row" }}>
+          <Search placeholder="input routing key"
+                  enterButton="Subscribe"
+                  onSearch={this.handleSubscribe}
+                  style={{ width: 400 }}/>
+          <div style={{ flex: 1 }}/>
+          <Button onClick={this.handleClearMessages}>Clear</Button>
+        </div>
       </div>
-      {this.renderSubscriptionTags(subscriptions)}
-      <Table
-        style={{ marginLeft: 8, marginRight: 8 }}
-        columns={this.columns}
-        rowKey="rowKey"
-        dataSource={messages}
-        pagination={false} size="small"/>
 
+      {this.renderSubscriptionTags(subscriptions)}
+      <div style={{ flex: 1 }}>
+        <AutoSizer>
+          {({ height, width }) => (
+            <List height={height}
+                  rowCount={messages.length}
+                  rowHeight={50}
+                  rowRenderer={this.renderListRow}
+                  width={width}/>
+          )}
+        </AutoSizer>
+      </div>
       {this.renderMessage(showMessage)}
     </div>
+  }
+
+  @autobind
+  renderListRow({
+                  key,         // Unique key within array of rows
+                  index,       // Index of row within collection
+                  isScrolling, // The List is currently being scrolled
+                  isVisible,   // This row is visible within the List (eg it is not an overscanned row)
+                  style        // Style object to be applied to row (to position it)
+                }) {
+    return (
+      <div key={key} style={style}>
+        {JSON.stringify(this.state.messages[index].body)}
+      </div>
+    )
   }
 
   @autobind
@@ -170,15 +167,16 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
   processData(data: any) {
     const parsedData = JSON.parse(data)
     this.setState(prevState => {
-      let messages = [...prevState.messages, ...parsedData.map(msg => (
+      let messages = prevState.messages;
+
+      messages.unshift(...parsedData.map(msg => (
         {
           rowKey: this.uniqueRowKey(),
           time: msg.t,
           type: msg.mt,
           body: msg
-        }))
-      ];
-
+        })).sort((a, b) => b.time - a.time)
+      )
       if (messages.length > 500) {
         messages = messages.slice(400, messages.length - 1)
       }
