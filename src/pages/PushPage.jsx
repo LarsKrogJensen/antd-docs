@@ -102,7 +102,7 @@ export class PushPage extends React.Component<any, { messages: Array<Message> }>
                   style        // Style object to be applied to row (to position it)
                 }) {
     return (
-      <div key={key} style={style}>
+      <div key={key} style={{ ...style, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
         {JSON.stringify(this.state.messages[index].body)}
       </div>
     )
