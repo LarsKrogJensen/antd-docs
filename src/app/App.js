@@ -5,7 +5,7 @@ import DocsPage from "pages/docs/DocsPage";
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import AppHeader from "./AppHeader";
 import {SwaggerPage} from "pages/swagger/SwaggerPage";
-import {PushPage} from "pages/PushPage";
+import {PushPage} from "pages/push/PushPage";
 
 const { Content } = Layout;
 
